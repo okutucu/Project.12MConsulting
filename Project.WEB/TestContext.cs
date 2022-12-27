@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -18,6 +19,8 @@ namespace Project.WEB
 
         public virtual DbSet<Sti> Stis { get; set; } = null!;
         public virtual DbSet<Stk> Stks { get; set; } = null!;
+        [NotMapped]
+        public virtual DbSet<FilterResult> FilterResults { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,6 +33,8 @@ namespace Project.WEB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<FilterResult>()
+                .HasNoKey();
             modelBuilder.Entity<Sti>(entity =>
             {
                 entity.HasKey(e => new { e.EvrakNo, e.Tarih, e.IslemTur })

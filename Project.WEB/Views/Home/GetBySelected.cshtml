@@ -1,3 +1,13 @@
-﻿@{
+﻿@model List<FilterResult>
+@{
     ViewData["Title"] = "Get By Selected";
+}
+
+
+@foreach (var item in Model)
+{
+    <p>@item.SiraNo</p>
+    <p>@item.EvrakNo</p>
+    <p>@item.GirisMiktar</p>
+    <p>@item.CikisMiktar</p>
 }
