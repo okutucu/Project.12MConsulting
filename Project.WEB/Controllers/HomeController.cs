@@ -48,7 +48,7 @@ namespace Project.WEB.Controllers
                 SqlParameter entryDate = new("@BaslangicTarihi", SqlDbType.Int);
                 entryDate.Value = enrtyConvertDate;
                 SqlParameter finishDate = new ("@BitisTarihi", SqlDbType.Int);
-                entryDate.Value = finishConvertDate;
+                finishDate.Value = finishConvertDate;
 
 
 
