@@ -3,11 +3,62 @@
     ViewData["Title"] = "Get By Selected";
 }
 
+@section ExtraCss{
+    <script>
+        https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css
+        https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css
 
-@foreach (var item in Model)
-{
-    <p>@item.SiraNo</p>
-    <p>@item.EvrakNo</p>
-    <p>@item.GirisMiktar</p>
-    <p>@item.CikisMiktar</p>
+    </script>
+}
+
+<table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Sira no</th>
+                <th>Evrak no </th>
+                <th>Giris Miktar</th>
+                <th>Cikis Miktar</th>
+                 <th>Tarih</th>
+                 <th>Stok</th>
+            </tr>
+        </thead>
+       <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SiraNo</td>
+                <td>@item.EvrakNo</td>
+                <td>@item.GirisMiktar</td>
+                <td>@item.CikisMiktar</td>
+                <td>@item.Tarih</td>
+                <td>@item.Stok</td>
+            </tr>
+
+        }
+       </tbody>
+        <tfoot>
+            <tr>
+            <th>Sira no</th>
+            <th>Evrak no </th>
+            <th>Giris Miktar</th>
+            <th>Cikis Miktar</th>
+            <th>Tarih</th>
+            <th>Stok</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+   @section ExtraScripts{
+    <script>
+
+        https://code.jquery.com/jquery-3.5.1.js
+        https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js
+        https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js
+
+
+        $(document).ready(function () {
+    $('#example').DataTable();
+});
+    </script>
 }

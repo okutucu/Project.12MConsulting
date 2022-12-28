@@ -19,6 +19,7 @@ namespace Project.WEB
 
         public virtual DbSet<Sti> Stis { get; set; } = null!;
         public virtual DbSet<Stk> Stks { get; set; } = null!;
+
         [NotMapped]
         public virtual DbSet<FilterResult> FilterResults { get; set; }
 
@@ -35,6 +36,7 @@ namespace Project.WEB
         {
             modelBuilder.Entity<FilterResult>()
                 .HasNoKey();
+
             modelBuilder.Entity<Sti>(entity =>
             {
                 entity.HasKey(e => new { e.EvrakNo, e.Tarih, e.IslemTur })

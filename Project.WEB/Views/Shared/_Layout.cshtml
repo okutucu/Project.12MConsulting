@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - Project.WEB</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Project.WEB.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("ExtraCss", false)
 </head>
 <body>
     <header>

@@ -35,28 +35,20 @@ namespace Project.WEB.Controllers
 
         public async Task<IActionResult> GetBySelected(RequestDto requestDto)
         {
-          
-
-
             using (var context = new TestContext())
             {
 
+                Stk stks = await context.Stks.FirstOrDefaultAsync(x => x.Id == requestDto.CommodityCodeId);
+ 
 
                 int enrtyConvertDate = Convert.ToInt32((requestDto.EntryDate).ToOADate());
                 int finishConvertDate = Convert.ToInt32((requestDto.FinishDate).ToOADate());
 
-                SqlParameter entryDate = new("@BaslangicTarihi", SqlDbType.Int);
-                entryDate.Value = enrtyConvertDate;
-                SqlParameter finishDate = new ("@BitisTarihi", SqlDbType.Int);
-                finishDate.Value = finishConvertDate;
+      
 
+                var data = await context.FilterResults.FromSqlRaw($"EXEC dbo.sp_GetByParameters @Malkodu = {stks.MalKodu}, @BaslangicTarihi = {enrtyConvertDate}, @BitisTarihi = {finishConvertDate}").ToListAsync();
 
-
-                Stk stks = await context.Stks.FirstOrDefaultAsync(x => x.Id == requestDto.CommodityCodeId);
-
-                var customFilterResults = context.FilterResults.FromSqlRaw("EXECUTE sp_GetByParameters @Malkodu @BaslangicTarihi @BitisTarihi", stks.MalKodu, entryDate, finishDate).ToList();
-
-                return View(customFilterResults);
+                return View(data);
             }
         }
     }
